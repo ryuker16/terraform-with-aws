@@ -1,0 +1,19 @@
+{
+  "name": "terraform-firehose",
+  "version": "0.0.1",
+  "description": "terraform module that deploys a Firehose delivery stream with an ExtendedS3DestinationConfiguration by way of a CloudFormation Stack using Lambda as a custom resource",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https:///Placester/terraform-firehose.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Placester/terraform-firehose/issues"
+  },
+  "homepage": "https://github.com/Placester/terraform-firehose#readme"
+}
