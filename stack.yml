@@ -1,0 +1,29 @@
+Description: "Master CloudFormation Template for the Bucket Rekognition Backfill application."
+Parameters:
+  DeliveryStreamName:
+    Type: String
+    Description: Enter the name of the firehose delivery stream
+    MinLength: 1
+  FunctionCode:
+    Type: String    
+    MinLength: 1
+
+Resources:
+ AWSFirehoseFunction:
+    Type: "AWS::Lambda::Function"
+    Properties:
+      FunctionName: AWSFirehoseFunction
+      Handler: index.handler
+      Role:
+      Description: Custom CFN resource to creates and deletes an AWS Firehose Delivery Steam with an ExtendedS3DestinationConfiguration
+      Runtime: nodejs4.3
+      Timeout: 300
+      Code:
+        ZipFile: !Ref LambdaFunctionCode
+
+  FirehoseDeliveryStreamResource:
+    Type: Custom::FirehoseDeliveryStreamResource
+    DependsOn: [ AWSFirehoseFunction ]
+    Properties:
+      ServiceToken: !GetAtt [AWSFirehoseFunction, Arn]
+      DeliveryStreamName: !Ref DeliveryStreamName
