@@ -5,8 +5,22 @@ Parameters:
     Description: Enter the name of the firehose delivery stream
     MinLength: 1
   FunctionCode:
-    Type: String    
+    Type: String
     MinLength: 1
+  RoleARN:
+    Type: String
+  BucketARN:
+    Type: String
+  Prefix:
+    Type: String
+  LogStreamName:
+    Type: String
+  LogGroupName:
+    Type: String
+  BackupPrefix:
+    Type: String
+  BackupBucketARN:
+    Type: String
 
 Resources:
  AWSFirehoseFunction:
@@ -14,12 +28,12 @@ Resources:
     Properties:
       FunctionName: AWSFirehoseFunction
       Handler: index.handler
-      Role:
-      Description: Custom CFN resource to creates and deletes an AWS Firehose Delivery Steam with an ExtendedS3DestinationConfiguration
+      Role: Ref RoleARN
+      Description: Custom CFN resource to creates and deletes an AWS Firehose Delivery Stream with an ExtendedS3DestinationConfiguration
       Runtime: nodejs4.3
       Timeout: 300
       Code:
-        ZipFile: !Ref LambdaFunctionCode
+        ZipFile: !Ref LambdaFunctionName
 
   FirehoseDeliveryStreamResource:
     Type: Custom::FirehoseDeliveryStreamResource

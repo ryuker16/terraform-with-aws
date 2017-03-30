@@ -6,36 +6,36 @@ exports.handler = function (event, context) {
   var firehose = new AWS.Firehose()
   if (event.RequestType == 'Create') {
     var params = {
-      DeliveryStreamName: event.ResourceProperties.DeliveryStreamName
+      DeliveryStreamName: event.ResourceProperties.DeliveryStreamName,
       ExtendedS3DestinationConfiguration: {
-        BucketARN: 'STRING_VALUE', /* required */
-        RoleARN: 'STRING_VALUE', /* required */
+        BucketARN: event.ResourceProperties.BucketARN, /* required */
+        RoleARN: event.ResourceProperties.RoleARN, /* required */
         BufferingHints: {
-          IntervalInSeconds: 0,
-          SizeInMBs: 0
+          IntervalInSeconds: event.ResourceProperties.IntervalInSeconds,
+          SizeInMBs: event.ResourceProperties.SizeInMBs
         },
         CloudWatchLoggingOptions: {
-          Enabled: true || false,
-          LogGroupName: 'STRING_VALUE',
-          LogStreamName: 'STRING_VALUE'
+          Enabled: true,
+          LogGroupName: event.ResourceProperties.LogGroupName,
+          LogStreamName: event.ResourceProperties.LogStreamName
         },
-        CompressionFormat: 'UNCOMPRESSED | GZIP | ZIP | Snappy',
+        CompressionFormat: 'UNCOMPRESSED', // | GZIP | ZIP | Snappy',
         EncryptionConfiguration: {
-          KMSEncryptionConfig: {
-            AWSKMSKeyARN: 'STRING_VALUE' /* required */
-          },
+          // KMSEncryptionConfig: {
+          //   AWSKMSKeyARN: 'STRING_VALUE' /* required */
+          // },
           NoEncryptionConfig: 'NoEncryption'
         },
-        Prefix: 'STRING_VALUE',
+        Prefix: event.ResourceProperties.Prefix,
         ProcessingConfiguration: {
-          Enabled: true || false,
+          Enabled: true,
           Processors: [
             {
               Type: 'Lambda', /* required */
               Parameters: [
                 {
-                  ParameterName: 'LambdaArn | NumberOfRetries', /* required */
-                  ParameterValue: 'STRING_VALUE' /* required */
+                  ParameterName: event.ResourceProperties.LambdaArnName, /* required */
+                  ParameterValue: event.ResourceProperties.LambdaArn /* required */
                 },
                 /* more items */
               ]
@@ -44,27 +44,27 @@ exports.handler = function (event, context) {
           ]
         },
         S3BackupConfiguration: {
-          BucketARN: 'STRING_VALUE', /* required */
-          RoleARN: 'STRING_VALUE', /* required */
+          BucketARN: event.ResourceProperties.BackupBucketARN, /* required */
+          RoleARN: event.ResourceProperties.RoleARN, /* required */
           BufferingHints: {
-            IntervalInSeconds: 0,
-            SizeInMBs: 0
+            IntervalInSeconds: event.ResourceProperties.IntervalInSeconds,
+            SizeInMBs: event.ResourceProperties.SizeInMBs
           },
           CloudWatchLoggingOptions: {
             Enabled: true || false,
-            LogGroupName: 'STRING_VALUE',
-            LogStreamName: 'STRING_VALUE'
+            LogGroupName: event.ResourceProperties.LogGroupName,
+            LogStreamName: event.ResourceProperties.LogStreamName
           },
-          CompressionFormat: 'UNCOMPRESSED | GZIP | ZIP | Snappy',
+          CompressionFormat: 'UNCOMPRESSED',
           EncryptionConfiguration: {
-            KMSEncryptionConfig: {
-              AWSKMSKeyARN: 'STRING_VALUE' /* required */
-            },
+            // KMSEncryptionConfig: {
+            //   AWSKMSKeyARN: 'STRING_VALUE' /* required */
+            // },
             NoEncryptionConfig: 'NoEncryption'
           },
-          Prefix: 'STRING_VALUE'
+          Prefix: event.ResourceProperties.Prefix
         },
-        S3BackupMode: 'Disabled | Enabled'
+        S3BackupMode: 'Enabled'
       }
     };
     firehose.createDeliveryStream(params, function (err, data) {
@@ -78,6 +78,14 @@ exports.handler = function (event, context) {
       }
     })
   } else if (event.RequestType == 'Delete') {
+    let params = {
+      DeliveryStreamName: event.ResourceProperties.DeliveryStreamName /* required */
+    };
+    firehose.deleteDeliveryStream(params, function(err, data) {
+      if (err) console.log(err, err.stack); // an error occurred
+      else     console.log(data);           // successful response
+    });
+
   } else {
     response.send(event, context, response.SUCCESS)
     return
