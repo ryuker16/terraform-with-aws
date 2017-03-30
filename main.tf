@@ -14,7 +14,9 @@ resource "aws_cloudformation_stack" "firehose_stack" {
     BucketARN          = "${aws_s3_bucket.property_canonical_bucket.arn}"
     BackupBucketARN    = "${aws_s3_bucket.property_extracted_bucket.arn}"
     LambdaArn          = "${aws_lambda_function.transformer.arn}"
-    LambdaArnName      = "${aws_lambda_function.transformer.function_name}"
+    NumberOfRetries    = "${var.NumberOfRetries}"
+    Enabled            = "${var.Enabled}"
+    Compression_format = "${var.Compression_format}"
 
     BufferingHints = {
       SizeInMBs         = "${var.SizeInMBs}"

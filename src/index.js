@@ -5,6 +5,7 @@ exports.handler = function (event, context) {
   console.log(event)
   var firehose = new AWS.Firehose()
   if (event.RequestType == 'Create') {
+
     var params = {
       DeliveryStreamName: event.ResourceProperties.DeliveryStreamName,
       ExtendedS3DestinationConfiguration: {
@@ -19,7 +20,7 @@ exports.handler = function (event, context) {
           LogGroupName: event.ResourceProperties.LogGroupName,
           LogStreamName: event.ResourceProperties.LogStreamName
         },
-        CompressionFormat: 'UNCOMPRESSED', // | GZIP | ZIP | Snappy',
+        CompressionFormat: event.ResourceProperties.Compression_format,
         EncryptionConfiguration: {
           // KMSEncryptionConfig: {
           //   AWSKMSKeyARN: 'STRING_VALUE' /* required */
@@ -51,11 +52,11 @@ exports.handler = function (event, context) {
             SizeInMBs: event.ResourceProperties.SizeInMBs
           },
           CloudWatchLoggingOptions: {
-            Enabled: true || false,
+            Enabled: true,
             LogGroupName: event.ResourceProperties.LogGroupName,
             LogStreamName: event.ResourceProperties.LogStreamName
           },
-          CompressionFormat: 'UNCOMPRESSED',
+          CompressionFormat: event.ResourceProperties.Compression_format,
           EncryptionConfiguration: {
             // KMSEncryptionConfig: {
             //   AWSKMSKeyARN: 'STRING_VALUE' /* required */
@@ -64,9 +65,17 @@ exports.handler = function (event, context) {
           },
           Prefix: event.ResourceProperties.Prefix
         },
-        S3BackupMode: 'Enabled'
+        S3BackupMode: event.ResourceProperties.Enabled
       }
     };
+
+    if (event.ResourceProperties.NumberOfRetries > 0) {
+      params.ProcessingConfiguration.Processors.push({
+            ParameterName: 'NumberOfRetries', /* required */
+            ParameterValue: event.ResourceProperties.NumberOfRetries /* required */
+      })
+    }
+
     firehose.createDeliveryStream(params, function (err, data) {
       if (err) {
         console.log(err, err.stack) // an error occurred

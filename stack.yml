@@ -33,9 +33,8 @@ Resources:
       Runtime: nodejs4.3
       Timeout: 300
       Code:
-        ZipFile: !Ref LambdaFunctionName
-
-  FirehoseDeliveryStreamResource:
+        ZipFile: "./src/index.zip"
+FirehoseDeliveryStreamResource:
     Type: Custom::FirehoseDeliveryStreamResource
     DependsOn: [ AWSFirehoseFunction ]
     Properties:

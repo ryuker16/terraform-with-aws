@@ -6,6 +6,21 @@ variable "aws_account_id" {
   description = "AWS Account id for placester, pl-internal, pl-staging, etc"
 }
 
+variable "Compression_format" {
+  default     = "UNCOMPRESSED"
+  description = "UNCOMPRESSED | GZIP | ZIP | Snappy"
+}
+
+variable "NumberOfRetries" {
+  default     = "2"
+  description = "Number of times to attempt after failure"
+}
+
+variable "Enabled" {
+  default     = "True"
+  description = "Boolean: determines whether to enable features"
+}
+
 variable "LogStreamName" {
   description = "Name of Log Stream"
 }
