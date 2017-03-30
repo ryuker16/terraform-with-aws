@@ -1,6 +1,4 @@
-provider "aws" {
-  region = "${var.aws_region}"
-}
+provider "aws" {}
 
 resource "aws_cloudformation_stack" "firehose_stack" {
   # https://www.terraform.io/docs/providers/aws/r/cloudformation_stack.html
