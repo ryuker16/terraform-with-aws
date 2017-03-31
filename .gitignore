@@ -1,6 +1,5 @@
-# Compiled files
-*.tfstate
-*.tfstate.backup
+# Development tfvars files
+*.tfvars
 
 # Created by https://www.gitignore.io/api/terraform,visualstudiocode
 
