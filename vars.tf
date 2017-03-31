@@ -1,3 +1,4 @@
+# input variables to the terraform-firehose module
 variable "aws_region" {
   default = "us-east-1"
 }

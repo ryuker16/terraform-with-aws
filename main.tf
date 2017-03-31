@@ -8,8 +8,12 @@ data "template_file" "firehose_delivery_role" {
     BackupPrefix    = "${var.BackupPrefix}"
     BucketARN       = "${aws_s3_bucket.property_canonical_bucket.arn}"
     BackupBucketARN = "${aws_s3_bucket.property_extracted_bucket.arn}"
+
+    # LogGroupArn = ""
   }
 }
+
+resource "aws_iam_role" "firehose_delivery_role" {}
 
 resource "aws_cloudformation_stack" "firehose_stack" {
   # https://www.terraform.io/docs/providers/aws/r/cloudformation_stack.html
@@ -27,10 +31,11 @@ resource "aws_cloudformation_stack" "firehose_stack" {
     Enabled            = "${var.Enabled}"
     Compression_format = "${var.Compression_format}"
 
-    BufferingHints = {
-      SizeInMBs         = "${var.SizeInMBs}"
-      IntervalInSeconds = "${var.IntervalInSeconds}"
-    }
+    # BufferingHints = {
+    SizeInMBs         = "${var.SizeInMBs}"
+    IntervalInSeconds = "${var.IntervalInSeconds}"
+
+    # }
 
     FunctionCode = "${file("${path.module}/src/index.js")}"
   }
