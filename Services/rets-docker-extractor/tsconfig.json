@@ -1,0 +1,44 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es2015",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "sourceMap": false,
+        "allowJs": false,
+        "outDir": "dist",
+        "moduleResolution": "node",
+        "lib": ["es6", "dom", "es2015.promise"],
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "importHelpers": true
+    },
+    "compileOnSave": true,
+    "include": [
+        "src/**/*",
+        "!node_modules"
+    ],
+    "filesGlob" : [
+        "src/**/*",
+        "!node_modules"
+    ],
+    "atom": {
+        "formatOnSave": true,
+        "rewriteTsconfig": false
+    },
+    "formatCodeOptions": {
+        "indentSize": 2,
+        "tabSize": 2,
+        "newLineCharacter": "\r\n",
+        "convertTabsToSpaces": true,
+        "insertSpaceAfterCommaDelimiter": true,
+        "insertSpaceAfterSemicolonInForStatements": true,
+        "insertSpaceBeforeAndAfterBinaryOperators": true,
+        "insertSpaceAfterKeywordsInControlFlowStatements": true,
+        "insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
+        "insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": false,
+        "placeOpenBraceOnNewLineForFunctions": false,
+        "placeOpenBraceOnNewLineForControlBlocks": false
+    }
+}

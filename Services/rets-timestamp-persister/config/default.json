@@ -1,0 +1,31 @@
+{
+  "region": "us-east-1",
+  "retsTimestampPersister": {
+    "queueBatchSize": 10,
+    "remainingMillisThreshold": "5000",
+    "queueUrl": null,
+    "mongoConnection": null,
+    "mongoDatabase": "placester_production",
+    "importsCollectionName": "imports"
+  },
+  "logger": {
+    "connection": {
+      "region": "us-east-1",
+      "credentials": {
+        "accessKeyId": null,
+        "secretAccessKey": null
+      }
+    },
+    "stream": {
+      "name": null,
+      "shards": 1
+    }
+  },
+  "logentries": {
+    "token": null
+  },
+  "boolfalse": false,
+  "booltrue": true,
+  "boolinvalid": "not a boolean",
+  "defaultint": "21"
+}

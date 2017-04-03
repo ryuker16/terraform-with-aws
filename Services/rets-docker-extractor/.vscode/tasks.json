@@ -1,0 +1,31 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "0.1.0",
+    "command": "gulp",
+    "isShellCommand": true,    
+    "tasks": [
+        {
+            "taskName": "watch",
+            "suppressTaskName": true,
+            "echoCommand": true,
+            "args": ["watchts"],
+            "isBuildCommand": true,
+            "isWatching": true,
+            "problemMatcher": [
+                "$lessCompile",
+                "$tsc",
+                "$jshint",
+                "$eslint-compact",
+                "$tsc-watch"                
+            ]
+        },
+        {
+            "taskName": "test",
+            "suppressTaskName": true, 
+            "echoCommand": true,           
+            "args": ["test"],
+            "isTestCommand": true
+        }
+    ]
+}

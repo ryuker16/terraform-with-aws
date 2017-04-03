@@ -1,0 +1,22 @@
+{
+   "Records": [
+       {
+           "EventSource": "aws:sns",
+           "EventVersion": "1.0",
+           "EventSubscriptionArn": "arn:aws:sns:us-east-1:752727858468:SNS_Sample_Topic:137033e9-47f9-4d31-86d3-e5d5b0a85041",
+           "Sns": {
+               "Type": "Notification",
+               "MessageId": "9fd78eea-5f72-5bf5-ba70-dfcb2687008f",
+               "TopicArn": "arn:aws:sns:us-east-1:752727858468:SNS_Sample_Topic",
+               "Subject": "Amazon S3 Notification",
+               "Message": "{\"Records\":[{\"eventVersion\":\"2.0\",\"eventSource\":\"aws:s3\",\"awsRegion\":\"us-east-1\",\"eventTime\":\"2017-02-17T22:22:45.646Z\",\"eventName\":\"ObjectCreated:Put\",\"userIdentity\":{\"principalId\":\"AWS:AIDAJSCD5YRGBGWEO27BU\"},\"requestParameters\":{\"sourceIPAddress\":\"174.221.136.188\"},\"responseElements\":{\"x-amz-request-id\":\"EB27C97FDB6242C0\",\"x-amz-id-2\":\"z9Jp9Ed9XPGS2x5ldwGj4C/BonRDnS9LBXR5Jcv+ejQt605y1kBcBFkk0QFzeLGI\"},\"s3\":{\"s3SchemaVersion\":\"1.0\",\"configurationId\":\"test SNS notifications\",\"bucket\":{\"name\":\"etl-extract-rets15-extracted-documents\",\"ownerIdentity\":{\"principalId\":\"A3N58L1S8CF93V\"},\"arn\":\"arn:aws:s3:::etl-extract-rets15-extracted-documents\"},\"object\":{\"key\":\"test/dups.txt\",\"size\":519661,\"eTag\":\"8bf7527cb5bfac45bd651f7d90479c2a\",\"sequencer\":\"0058A777B58FE08FC0\"}}}]}",
+               "Timestamp": "2017-02-17T22:22:45.708Z",
+               "SignatureVersion": "1",
+               "Signature": "LsXcUcB1NoXW5E+yaRAOsmE8IHakuUJ1E8yUGz6PFKtkwgeni4jrnt5Ki3hTzE19AiP0NeJ4DU4AweiqGyzQmuz+JjsnY38QBZLf/cZs+3gXpzlxLEfXo7cWx4Ws93MkbV2WU+7MmFLkKtDtKx8ELNs7mg4SzorGUdwhlDcgRj4pdxqGLywlmYfVniFD1qCVc7uDLvPEWjbipJKro8dldaWFx7SolPg9j+lKNI5iDItDwgIKkzaZGoJwPoxRUjDkSt/b6c7tfguMrx1I3VJopncWrFDKljYRTDYdBsB+3vjqXSqvIy9p6y7p1iUJjkT5Us+N1veu3BHQfo8I3NfA8g==",
+               "SigningCertUrl": "https://sns.us-east-1.amazonaws.com/SimpleNotificationService-b95095beb82e8f6a046b3aafc7f4149a.pem",
+               "UnsubscribeUrl": "https://sns.us-east-1.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:us-east-1:752727858468:SNS_Sample_Topic:137033e9-47f9-4d31-86d3-e5d5b0a85041",
+               "MessageAttributes": {}
+           }
+       }
+   ]
+}

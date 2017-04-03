@@ -1,0 +1,9 @@
+{
+  "region": "us-east-1",
+  "snsQueueRelay": {
+    "queueUrl": null
+  },
+  "logentries": {
+    "token": null
+  }
+}

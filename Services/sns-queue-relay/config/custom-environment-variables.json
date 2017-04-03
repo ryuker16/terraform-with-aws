@@ -1,0 +1,8 @@
+{
+  "snsQueueRelay": {
+    "queueUrl": "QUEUE_URL"
+  },
+  "logentries": {
+    "token": "LOGENTRIES_TOKEN"
+  }
+}

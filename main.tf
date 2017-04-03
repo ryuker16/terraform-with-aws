@@ -4,29 +4,28 @@ data "template_file" "firehose_delivery_role" {
   template = "${file("${path.module}/templates/firehose_delivery_role.json")}"
 
   vars {
-    LambdaArn       = "${aws_lambda_function.transformer.arn}"
+    LambdaArn       = "${var.LambdaArn}"
     BackupPrefix    = "${var.BackupPrefix}"
-    BucketARN       = "${aws_s3_bucket.property_canonical_bucket.arn}"
-    BackupBucketARN = "${aws_s3_bucket.property_extracted_bucket.arn}"
-
-    # LogGroupArn = ""
+    BucketARN       = "${var.BucketARN}"
+    BackupBucketARN = "${var.BackupBucketARN}"
+    LogGroupArn     = "${var.LogGroupArn}"
   }
 }
 
-resource "aws_iam_role" "firehose_delivery_role" {}
+resource "aws_cloudformation_stack" "firehose" {
+  name = "firehose-stack"
 
-resource "aws_cloudformation_stack" "firehose_stack" {
   # https://www.terraform.io/docs/providers/aws/r/cloudformation_stack.html
   parameters {
     DeliveryStreamName = "${var.DeliveryStreamName}"
-    RoleARN            = "${aws_iam_role.firehose_delivery_role.arn}"
+    RoleARN            = "${data.template_file.firehose_delivery_role.rendered}"
     Prefix             = "${var.Prefix}"
     LogStreamName      = "${var.LogStreamName}"
     LogGroupName       = "${var.LogGroupName}"
     BackupPrefix       = "${var.BackupPrefix}"
-    BucketARN          = "${aws_s3_bucket.property_canonical_bucket.arn}"
-    BackupBucketARN    = "${aws_s3_bucket.property_extracted_bucket.arn}"
-    LambdaArn          = "${aws_lambda_function.transformer.arn}"
+    BucketARN          = "${var.BucketARN}"
+    BackupBucketARN    = "${var.BackupBucketARN}"
+    LambdaArn          = "${var.LambdaArn}"
     NumberOfRetries    = "${var.NumberOfRetries}"
     Enabled            = "${var.Enabled}"
     Compression_format = "${var.Compression_format}"
@@ -40,6 +39,6 @@ resource "aws_cloudformation_stack" "firehose_stack" {
     FunctionCode = "${file("${path.module}/src/index.js")}"
   }
 
-  template_body = "${file("${path.module}/stack.yaml")}"
+  template_body = "${file("${path.module}/stack.yml")}"
   policy_body   = "${data.template_file.firehose_delivery_role.rendered}"
 }

@@ -1,0 +1,8 @@
+dist*
+distlambda
+distlambda.zip
+
+# npm config files
+config/*
+!config/default*
+!config/custom-environment-variables.json

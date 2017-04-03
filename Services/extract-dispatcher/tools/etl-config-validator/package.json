@@ -1,0 +1,22 @@
+{
+  "name": "etl-config-validator",
+  "version": "1.0.0",
+  "description": "This is a tool which takes an import id and creates the extraction request. The main goal is to validate the transform manifest that is created from our legacy import documents.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sync": "aws s3 sync ./config s3://etl-code-config/extract-dispatcher/$npm_package_version/config"
+  },
+  "author": "Placester, Inc. <engineering@placester.com>",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.4.7",
+    "config": "^1.24.0",
+    "lodash": "^4.17.4",
+    "mongodb": "^2.2.19"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Placester/Data-Services-ETL"
+  }
+}

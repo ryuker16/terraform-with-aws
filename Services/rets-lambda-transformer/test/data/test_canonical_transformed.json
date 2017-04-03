@@ -1,0 +1,141 @@
+{
+  "_id" : "52a21dbc0378154f730003c8",
+  "access_id" : "518a5a2f7293b45d2b000006",
+  "agency_data" : {
+    "name" : "COLDWELL BANKER PREFERRED, REALTORS",
+    "email" : "null+a51d1ce9b0378151b5a00007d@placester.net",
+    "phone" : "+17344596000",
+    "use_polygons" : true
+  },
+  "agency_id" : "51d1ce9b0378151b5a00007d",
+  "building_id" : "52a21dbd0378154f730003ca",
+  "compound_type" : "res_sale",
+  "created_at" : "2013-12-06T18:55:57.000Z",
+  "cur_data" : {
+    "baths" : 3,
+    "beds" : 4,
+    "desc" : "TO BE BUILT * WOODED PARCEL * OTHER SITES AVAIL * GATED COMM W/ PRIV ASPH RD ~ ALL UND GR ULT- INC NAT GAS * CENT LOC IN SALEM TWP - CLOSE TO SCHOOLS/ SHOP/ X WAYS * DEED RES APPLY - MIN SQ FT 1 ST 2300 ~ 1 1/2 ST 2700 ~ 2 ST 3400 * ALL D/M APX * CAL LISTOR FOR INFO ***** GATE OPEN DAILY 9AM - 6PM *****",
+    "half_baths" : 1,
+    "price" : 695000.0,
+    "prop_type" : "Residential",
+    "sch_dist" : "South Lyon",
+    "sqft" : 2800.0,
+    "status" : "Active",
+    "year_blt" : 9999
+  },
+  "data_flags" : [],
+  "enabled" : true,
+  "feed_id" : "2080261",
+  "images" : [
+    {
+      "order" : 1,
+      "_id" : "57d1da601c740b04a0002a7f",
+      "orig_name" : "56ed4e2d599c531d.jpeg",
+      "caption" : "FRONT VIEW",
+      "file_uid" : "images/52a21dbc0378154f730003c8/57d1da601c740b04a0002a7f.jpeg"
+    }
+  ],
+  "imp_data" : {
+    "fhash" : "dxpfDHw1jhwsRpHroqKpgg",
+    "pmod" : "2008-01-03T13:46:00.000",
+    "icode" : 1473910401,
+    "chg" : true
+  },
+  "import_id" : "51d1ce791cdabc7a4c000006",
+  "listing_types" : [],
+  "loc_hash" : "db44b887e17e7b99fece781416bc8225",
+  "location" : {
+    "_id" : "52a21dbc0378154f730003c9",
+    "address" : "5901 Turnberry Drive",
+    "coords" : [
+      42.4193489,
+      -83.647627
+    ],
+    "country" : "US",
+    "county" : "Washtenaw",
+    "locality" : "Salem Twp",
+    "neighborhood" : "",
+    "postal" : "48178",
+    "region" : "MI",
+    "source" : "unknown",
+    "source_meta" : {},
+    "unit" : ""
+  },
+  "openhouses" : [],
+  "person_ids" : [],
+  "polygon" : {
+    "_id" : "52a21dbd037815572d000001",
+    "address" : "5897 Turnberry Drive",
+    "coords" : [
+      42.4189489,
+      -83.647227
+    ],
+    "master" : true,
+    "poly_lat" : [
+      42.4184489,
+      42.4184489,
+      42.4194489,
+      42.4194489
+    ],
+    "poly_lon" : [
+      -83.647727,
+      -83.646727,
+      -83.646727,
+      -83.647727
+    ]
+  },
+  "provider_data" : {},
+  "provider_id" : "518a5a2f7293b45d2b000006",
+  "publisher_ids" : [],
+  "purchase_types" : [
+    "sale"
+  ],
+  "rel_people" : {},
+  "reservations" : [],
+  "rets" : {
+    "aemail" : "francisljulian5@aol.com",
+    "aid" : "243833",
+    "aname" : "FRANCIS JULIAN",
+    "aphone" : "(734) 459-6000",
+    "mls_id" : "28000515",
+    "oemail" : "plymouth@cbpreferred.com",
+    "oid" : "251319",
+    "oname" : "Coldwell Banker Preferred, REALTORS",
+    "ophone" : "(734) 459-6000"
+  },
+  "status" : "active",
+  "time_zone" : "America/Detroit",
+  "total_images" : 1,
+  "uncur_data" : {
+    "architecture" : "Tudor",
+    "exterior_features" : "Outside Lighting",
+    "fireplace" : true,
+    "fireplace_location" : "Great Room",
+    "foundation" : "Basement",
+    "garage" : true,
+    "garage_features" : "Attached,Direct Access,Door Opener,Electricity",
+    "garage_spaces" : "3 Car",
+    "heating" : "Forced Air",
+    "heating_fuel" : "Gas",
+    "number_of_rooms" : 15,
+    "originating_mls" : "Realcomp",
+    "pool": false,
+    "road_frontage" : "Paved, Private",
+    "sewer" : "Septic-Existing",
+    "summer_tax" : 0.0,
+    "water" : "Well-Existing",
+    "winter_tax" : 0.0
+  },
+  "updated_at" : "2016-09-15T03:33:23.000Z",
+  "url" : null,
+  "user_data" : {
+    "fn" : "FRANCIS",
+    "ln" : "JULIAN",
+    "ph" : "+17344596000",
+    "em" : "null+u51d1ce9b0378151b5a000096@placester.net"
+  },
+  "user_id" : "51d1ce9b0378151b5a000096",
+  "zoning_types" : [
+    "residential"
+  ]
+}

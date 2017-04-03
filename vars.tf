@@ -1,12 +1,3 @@
-# input variables to the terraform-firehose module
-variable "aws_region" {
-  default = "us-east-1"
-}
-
-variable "aws_account_id" {
-  description = "AWS Account id for placester, pl-internal, pl-staging, etc"
-}
-
 variable "Compression_format" {
   default     = "UNCOMPRESSED"
   description = "UNCOMPRESSED | GZIP | ZIP | Snappy"
@@ -35,6 +26,7 @@ variable "DeliveryStreamName" {
 }
 
 variable "Prefix" {
+  default     = "Test-Firehose"
   description = "name of the transformed documents s3 prefix"
 }
 
@@ -48,6 +40,10 @@ variable "SizeInMBs" {
 
 variable "IntervalInSeconds" {
   default = 60
+}
+
+variable "LogGroupArn" {
+  description = "test"
 }
 
 variable "BackupPrefix" {

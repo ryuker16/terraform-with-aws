@@ -1,0 +1,21 @@
+{
+  "transformer": {
+    "queueUrl": "QUEUE_URL",
+    "propertyAvailableEvent": "PROPERTY_AVAILABLE_EVENT",
+    "propertyDestinationBucket": "PROPERTY_DEST_BUCKET"
+  },
+  "logger": {
+    "connection": {
+      "credentials": {
+        "accessKeyId": "LOGGER_AWS_ACCESS_KEY",
+        "secretAccessKey": "LOGGER_AWS_ACCESS_SECRET"
+      }
+    },
+    "stream": {
+      "name": "LOGGER_STREAM_NAME"
+    }
+  },
+  "logentries": {
+    "token": "LOGENTRIES_TOKEN"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "region": "AWS_DEFAULT_REGION",
+  "dispatcher": {
+    "mongoConnection": "MONGO_CONNECTION"
+  },
+  "logger": {
+    "connection": {
+      "credentials": {
+        "accessKeyId": "LOGGER_AWS_ACCESS_KEY",
+        "secretAccessKey": "LOGGER_AWS_ACCESS_SECRET"
+      }
+    },
+    "stream": {
+      "name": "LOGGER_STREAM_NAME"
+    }
+  },
+  "logentries": {
+    "token": "LOGENTRIES_TOKEN"
+  }
+}

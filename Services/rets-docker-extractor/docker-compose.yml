@@ -1,0 +1,11 @@
+version: '2'
+services:
+  extractor:
+    build: .
+    volumes:
+      - $HOME/.aws:/home/.aws
+    environment: 
+      NODE_ENV: test
+      NODE_APP_INSTANCE: docker
+      DEBUG: logginglib
+    command: [node, -v]

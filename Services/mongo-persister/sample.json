@@ -1,0 +1,10 @@
+{
+    "Messages": [
+        {
+            "Body": "{\n  \"Type\" : \"Notification\",\n  \"MessageId\" : \"2935e2e3-09d5-577d-85bc-b3cb0439122e\",\n  \"TopicArn\" : \"arn:aws:sns:us-east-1:752727858468:sample-topic\",\n  \"Subject\" : \"SNS_TO_SQS\",\n  \"Message\" : \"some message\",\n  \"Timestamp\" : \"2017-02-22T22:07:40.296Z\",\n  \"SignatureVersion\" : \"1\",\n  \"Signature\" : \"NcbJbNHwdEChcNDs4uZzBSh0cLEFKP8MfOvPybwElml1EpgnQ+9Aa7DLKSCOOYgim9J8Z8fzTxazdai1PJ4SAPBGDkaKvm0AoOoerC96c+YhWZujh17+mzYh55ZwVxu3tJO5BHroO7jji3XLH2hgE0addlgL/sE5dsfkbHvp9TOoBdMYcH5sLxha9XITsKqHZm3i3SNzV3fkemxRwvYzd+Eujzeru2aQOMvG28l9PHLg+eSNqlkWgCKQJxf0rky7uyMpma/sj2OvRhYzyEaSuRJ8JK1MSfbyFs7aSMVkJhGkBV+k+u2JwXy5/pE4I23GYetdjtuAb9KGvzZeQhPA5g==\",\n  \"SigningCertURL\" : \"https://sns.us-east-1.amazonaws.com/SimpleNotificationService-b95095beb82e8f6a046b3aafc7f4149a.pem\",\n  \"UnsubscribeURL\" : \"https://sns.us-east-1.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:us-east-1:752727858468:sample-topic:c8b1530f-9552-4447-9a25-476f7702c9e4\"\n}", 
+            "ReceiptHandle": "AQEBtGUOknWy+RN0RZITWk3CyChXHTCbcsU4kXDuccJmLAelEoK2UFMapW0lrx1soitjt09RwAHYMl871qBF291jPSZjkWAv5MkK8MZElJ9LhnHOn5otX/AFafvx/E72iNNTu921hppP13wvvOb/YwtkfRXZ0yS2odLiuhyssEe3EItRA3jlVEzUbXPh40vJ9CvLusbTTGQUZW8dBSkZgDGOhmlN1I+1uhytD89XmUNIk9IxbN2Oa/eqn6ytTUzNeB+uFmXuwUsRyLWZLzOTxMJXTbAYvICQNnIH4FXxTW/4jIz+SehNNa2Yt9tC32OKoYNwTBuXG2+2sdOWDHyWNGDwR57YRK+NKCxdD+EosUAsVC0YhmtB2hrfQM4GDDzjNUR1", 
+            "MD5OfBody": "a08ec1b663095dbf5396852dc00d4d90", 
+            "MessageId": "50990e96-6c86-4ae0-bbd3-2f2d539a8c5b"
+        }
+    ]
+}

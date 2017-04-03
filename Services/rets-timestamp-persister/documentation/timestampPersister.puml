@@ -1,0 +1,38 @@
+@startuml
+
+participant lambda
+participant index
+participant RetsTimestaRTPPersister as RTP
+participant mongodb
+
+participant QueueConsumer as QC
+participant SQS
+
+lambda -> index: handler
+index -> RTP : executeMongoPersister
+activate RTP
+RTP -> QC : consume
+
+activate QC
+
+  QC -> SQS : receiveMessage()
+  QC -> RTP : handleMessageBatch
+
+  activate PDP
+  RTP -> PDP : storeBatch(documents)
+  PDP -> PDP : generateIdHexString (iRTPort_id, feed_id)
+  PDP -> mongodb : initializeUnorderedBulkOp()\n.find()\n.upsert()\n.replaceOne()
+  deactivate PDP
+
+  RTP -> QC : handleMessageBatch resolves
+  QC -> SQS : deleteMessagesBatch()
+
+  QC -> RTP : consumeUntil => boolean
+  RTP -> lambda : getRemainingTimeInMills()
+  RTP -> QC : return (remaining < threshold)
+
+deactivate RTP
+
+deactivate QC
+
+@enduml

@@ -1,0 +1,60 @@
+{
+  "region": "us-east-1",
+  "importQueueUrl": null,
+  "exportTopicArns": {
+    "property": null,
+    "member": null,
+    "office": null,
+    "openhouse": null
+  },
+  "accessKeyId": null,
+  "secretAccessKey": null,
+  "RetsImporterService": {
+    "resourceConcurrency": "2",
+    "classConcurrency": "5",
+    "imagesConcurrency": "10",
+    "defaultQueryOptions": {
+      "limit": 1000,
+      "offset": 1,
+      "restrictedIndicator": ""
+    },
+    "queryTimestampPattern": "#{TIMESTAMP}",
+    "defaultLastRunTimeSubtractUnitOfTime": "days",
+    "defaultLastRunTimeSubtractValue": "1",
+    "queryDirection": "+",
+    "photoType": "HiRes",
+    "photoQueryIdCount": 5
+  },
+  "RetsExporterService": {
+    "resourceConcurrency": "3",
+    "classConcurrency": "3",
+    "resultConcurrency": "10",
+    "DeliveryStreamName": null,
+    "firehoseBufferCount": "40",
+    "firehoseConcurrency": "3",
+    "periodFormat": "YYYY-MM-DD-HH-mm",
+    "bucket": null,
+    "region": null
+  },
+  "RetsTimestampNotifierService": {
+    "topicArn": null
+  },
+  "sleepTimeMs": "180000",
+  "batchSize": "1",
+  "logger": {
+    "connection": {
+      "region": "us-east-1",
+      "credentials": {
+        "accessKeyId": null,
+        "secretAccessKey": null
+      }
+    },
+    "stream": {
+      "name": null,
+      "shards": 1
+    }
+  },
+  "logentries": {
+    "token": null
+  }
+}

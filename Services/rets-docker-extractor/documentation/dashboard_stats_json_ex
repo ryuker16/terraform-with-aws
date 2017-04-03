@@ -1,0 +1,118 @@
+{
+    "listing_counts": {
+        "total": 432,
+        "imported": 71,
+        "with_images": 70
+    },
+    "status_counts": {
+        "": 71
+    },
+    "prop_type_counts": {
+        "": 71
+    },
+    "region_counts": {
+        "Oregon": 30,
+        "OR": 41
+    },
+    "region_locality_counts": {
+        "Oregon": {
+            "Nehalem": 1,
+            "Gearhart": 1,
+            "Seaside": 12,
+            "Manzanita": 2,
+            "Cannon Beach": 3,
+            "Astoria": 8,
+            "Warrenton": 3
+        },
+        "OR": {
+            "Arch Cape": 1,
+            "Nehalem": 3,
+            "Astoria": 4,
+            "Gearhart": 7,
+            "Birkenfeld": 1,
+            "Warrenton": 2,
+            "Cannon Beach": 5,
+            "Manzanita": 5,
+            "Seaside": 13
+        }
+    },
+    "region_locality_neighborhood_counts": {
+        "Oregon": {
+            "Gearhart": {
+                "": 1
+            },
+            "Nehalem": {
+                "": 1
+            },
+            "Seaside": {
+                "": 12
+            },
+            "Cannon Beach": {
+                "": 3
+            },
+            "Astoria": {
+                "": 8
+            },
+            "Warrenton": {
+                "": 3
+            },
+            "Manzanita": {
+                "": 2
+            }
+        },
+        "OR": {
+            "Arch Cape": {
+                "": 1
+            },
+            "Warrenton": {
+                "": 2
+            },
+            "Astoria": {
+                "": 4
+            },
+            "Birkenfeld": {
+                "": 1
+            },
+            "Cannon Beach": {
+                "": 5
+            },
+            "Manzanita": {
+                "": 5
+            },
+            "Gearhart": {
+                "": 7
+            },
+            "Seaside": {
+                "": 13
+            },
+            "Nehalem": {
+                "": 3
+            }
+        }
+    },
+    "postal_counts": {
+        "97016": 1,
+        "97103": 16,
+        "97110": 3,
+        "97130": 7,
+        "97131": 4,
+        "97138": 33,
+        "97145": 2,
+        "97146": 5
+    },
+    "county_counts": {
+        "": 71
+    },
+    "attributes": {
+        "curated": [
+            "Full Bathrooms",
+            "Full Bedrooms",
+            "Partial Bathrooms",
+            "Price",
+            "Property Description",
+            "Square Feet",
+            "Year Built"
+        ],
+        "uncurated": []
+    }
+}

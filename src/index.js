@@ -4,8 +4,7 @@ exports.handler = function (event, context) {
   console.log('REQUEST RECEIVED')
   console.log(event)
   var firehose = new AWS.Firehose()
-  if (event.RequestType == 'Create') {
-
+  if (event.RequestType === 'Create' ||  event.RequestType === 'Update') {
     var params = {
       DeliveryStreamName: event.ResourceProperties.DeliveryStreamName,
       ExtendedS3DestinationConfiguration: {
@@ -91,8 +90,13 @@ exports.handler = function (event, context) {
       DeliveryStreamName: event.ResourceProperties.DeliveryStreamName /* required */
     };
     firehose.deleteDeliveryStream(params, function(err, data) {
-      if (err) console.log(err, err.stack); // an error occurred
-      else     console.log(data);           // successful response
+      if (err) {
+        console.log(err, err.stack) // an error occurred
+        response.send(event, context, response.FAILED, err)
+      }
+      else {
+        console.log(data)           // successful response
+      }
     });
 
   } else {

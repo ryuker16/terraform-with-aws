@@ -1,0 +1,24 @@
+{
+  "region": "us-east-1",
+  "dispatcher": {
+    "mongoConnection": null,
+    "mongoDatabase": "placester_production",
+    "tableName": "imports"
+  },
+  "logger": {
+    "connection": {
+      "region": "us-east-1",
+      "credentials": {
+        "accessKeyId": null,
+        "secretAccessKey": null
+      }
+    },
+    "stream": {
+      "name": null,
+      "shards": 1
+    }
+  },
+  "logentries": {
+    "token": null
+  }
+}

@@ -1,0 +1,39 @@
+@startuml
+
+participant lambda
+participant index
+participant MongoPersister as MP
+participant PropertyDocumentPersister as PDP
+participant mongodb
+
+participant QueueConsumer as QC
+participant SQS
+
+lambda -> index: handler
+index -> MP : executeMongoPersister
+activate MP
+MP -> QC : consume
+
+activate QC
+
+  QC -> SQS : receiveMessage()
+  QC -> MP : handleMessageBatch
+
+  activate PDP
+  MP -> PDP : storeBatch(documents)
+  PDP -> PDP : generateIdHexString (import_id, feed_id)
+  PDP -> mongodb : initializeUnorderedBulkOp()\n.find()\n.upsert()\n.replaceOne()
+  deactivate PDP
+
+  MP -> QC : handleMessageBatch resolves
+  QC -> SQS : deleteMessagesBatch()
+
+  QC -> MP : consumeUntil => boolean
+  MP -> lambda : getRemainingTimeInMills()
+  MP -> QC : return (remaining < threshold)
+
+deactivate MP
+
+deactivate QC
+
+@enduml
