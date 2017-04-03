@@ -23,8 +23,8 @@ Parameters:
     Type: String
 
 Resources:
- AWSFirehoseFunction:
-    Type: "AWS::Lambda::Function"
+  AWSFirehoseFunction:
+    Type: 'AWS::Lambda::Function'
     Properties:
       FunctionName: AWSFirehoseFunction
       Handler: index.handler
@@ -33,10 +33,11 @@ Resources:
       Runtime: nodejs4.3
       Timeout: 300
       Code:
-        ZipFile: "./src/index.zip"
-FirehoseDeliveryStreamResource:
+        ZipFile: !Ref FunctionCode
+
+  FirehoseDeliveryStreamResource:
     Type: Custom::FirehoseDeliveryStreamResource
     DependsOn: [ AWSFirehoseFunction ]
     Properties:
-      ServiceToken: !GetAtt [AWSFirehoseFunction, Arn]
+      ServiceToken: !GetAtt AWSFirehoseFunction.Arn
       DeliveryStreamName: !Ref DeliveryStreamName
