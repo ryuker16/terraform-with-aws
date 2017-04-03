@@ -1,6 +1,6 @@
 provider "aws" {}
 
-data "template_file" "firehose_delivery_role" {
+/*data "template_file" "firehose_delivery_role" {
   template = "${file("${path.module}/templates/firehose_delivery_role.json")}"
 
   vars {
@@ -10,15 +10,15 @@ data "template_file" "firehose_delivery_role" {
     BackupBucketARN = "${var.BackupBucketARN}"
     LogGroupArn     = "${var.LogGroupArn}"
   }
-}
+}*/
 
-resource "aws_cloudformation_stack" "firehose" {
+resource "aws_cloudformation_stack" "firehose_test_stack" {
   name = "firehose-stack"
 
   # https://www.terraform.io/docs/providers/aws/r/cloudformation_stack.html
   parameters {
     DeliveryStreamName = "${var.DeliveryStreamName}"
-    RoleARN            = "${data.template_file.firehose_delivery_role.rendered}"
+    RoleARN            = "${aws_iam_role.firehose_delivery_role.arn}"
     Prefix             = "${var.Prefix}"
     LogStreamName      = "${var.LogStreamName}"
     LogGroupName       = "${var.LogGroupName}"
@@ -28,7 +28,7 @@ resource "aws_cloudformation_stack" "firehose" {
     LambdaArn          = "${var.LambdaArn}"
     NumberOfRetries    = "${var.NumberOfRetries}"
     Enabled            = "${var.Enabled}"
-    Compression_format = "${var.Compression_format}"
+    CompressionFormat  = "${var.CompressionFormat}"
 
     # BufferingHints = {
     SizeInMBs         = "${var.SizeInMBs}"
@@ -40,5 +40,6 @@ resource "aws_cloudformation_stack" "firehose" {
   }
 
   template_body = "${file("${path.module}/stack.yml")}"
-  policy_body   = "${data.template_file.firehose_delivery_role.rendered}"
+
+  #policy_body = "${data.aws_iam_policy_document.firehose_delivery_role.json}"
 }

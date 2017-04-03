@@ -1,4 +1,4 @@
-variable "Compression_format" {
+variable "CompressionFormat" {
   default     = "UNCOMPRESSED"
   description = "UNCOMPRESSED | GZIP | ZIP | Snappy"
 }
@@ -56,4 +56,13 @@ variable "BackupBucketARN" {
 
 variable "LambdaArn" {
   description = "Arn of the ExtendedS3DestinationConfiguration lambda"
+}
+
+variable "aws_account_id" {
+  description = "Enter your AWS Account ID!"
+}
+
+variable "aws_region" {
+  description = "Enter your AWS region!"
+  default     = "us-east-1"
 }

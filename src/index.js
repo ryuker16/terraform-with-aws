@@ -4,7 +4,7 @@ exports.handler = function (event, context) {
   console.log('REQUEST RECEIVED')
   console.log(event)
   var firehose = new AWS.Firehose()
-  if (event.RequestType === 'Create' ||  event.RequestType === 'Update') {
+  if (event.RequestType === 'Create') {
     var params = {
       DeliveryStreamName: event.ResourceProperties.DeliveryStreamName,
       ExtendedS3DestinationConfiguration: {
@@ -19,7 +19,7 @@ exports.handler = function (event, context) {
           LogGroupName: event.ResourceProperties.LogGroupName,
           LogStreamName: event.ResourceProperties.LogStreamName
         },
-        CompressionFormat: event.ResourceProperties.Compression_format,
+        CompressionFormat: event.ResourceProperties.CompressionFormat,
         EncryptionConfiguration: {
           // KMSEncryptionConfig: {
           //   AWSKMSKeyARN: 'STRING_VALUE' /* required */
@@ -55,7 +55,7 @@ exports.handler = function (event, context) {
             LogGroupName: event.ResourceProperties.LogGroupName,
             LogStreamName: event.ResourceProperties.LogStreamName
           },
-          CompressionFormat: event.ResourceProperties.Compression_format,
+          CompressionFormat: event.ResourceProperties.CompressionFormat,
           EncryptionConfiguration: {
             // KMSEncryptionConfig: {
             //   AWSKMSKeyARN: 'STRING_VALUE' /* required */

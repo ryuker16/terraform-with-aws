@@ -21,6 +21,18 @@ Parameters:
     Type: String
   BackupBucketARN:
     Type: String
+  LambdaArn:
+    Type: String
+  IntervalInSeconds:
+    Type: Number
+  SizeInMBs:
+    Type: Number
+  CompressionFormat:
+    Type: String
+  NumberOfRetries:
+    Type: Number
+  Enabled:
+    Type: String
 
 Resources:
   AWSFirehoseFunction:
@@ -28,7 +40,7 @@ Resources:
     Properties:
       FunctionName: AWSFirehoseFunction
       Handler: index.handler
-      Role: Ref RoleARN
+      Role: !Ref RoleARN
       Description: Custom CFN resource to creates and deletes an AWS Firehose Delivery Stream with an ExtendedS3DestinationConfiguration
       Runtime: nodejs4.3
       Timeout: 300

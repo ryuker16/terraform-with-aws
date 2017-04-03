@@ -27,6 +27,13 @@
       "Resource": "${LambdaArn}"
     },
     {
+     "Effect": "Allow",
+     "Principal": {
+       "Service": "lambda.amazonaws.com"
+     },
+     "Action": "sts:AssumeRole"
+   }
+    {
       "Effect": "Allow",
       "Action": [
         "logs:PutLogEvents"
