@@ -31,16 +31,48 @@ Parameters:
     Type: String
   NumberOfRetries:
     Type: Number
-  Enabled:
+  S3BackupModeEnabled:
     Type: String
 
 Resources:
+  AWSFirehoseFunctionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      Path: "/"
+      ManagedPolicyArns:
+          - arn:aws:iam::aws:policy/AmazonKinesisFirehoseFullAccess
+      Policies:
+        -
+          PolicyName: policy-awsfirehose-deployment-function
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              -
+                Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: "*"
+              -
+                Effect: Allow
+                Action:
+                  - iam:PassRole
+                Resource: "*"
   AWSFirehoseFunction:
     Type: 'AWS::Lambda::Function'
     Properties:
-      FunctionName: AWSFirehoseFunction
+      FunctionName: !Join ['-', ['firehose-deployment', !Ref DeliveryStreamName] ]
       Handler: index.handler
-      Role: !Ref RoleARN
+      Role: !GetAtt AWSFirehoseFunctionRole.Arn
       Description: Custom CFN resource to creates and deletes an AWS Firehose Delivery Stream with an ExtendedS3DestinationConfiguration
       Runtime: nodejs4.3
       Timeout: 300
@@ -53,3 +85,15 @@ Resources:
     Properties:
       ServiceToken: !GetAtt AWSFirehoseFunction.Arn
       DeliveryStreamName: !Ref DeliveryStreamName
+      BucketARN: !Ref BucketARN
+      RoleARN: !Ref RoleARN
+      IntervalInSeconds: !Ref IntervalInSeconds
+      SizeInMBs: !Ref SizeInMBs
+      LogGroupName: !Ref LogGroupName
+      LogStreamName: !Ref LogStreamName
+      CompressionFormat: !Ref CompressionFormat
+      Prefix: !Ref Prefix
+      BackupBucketARN: !Ref BackupBucketARN      
+      BackupPrefix: !Ref BackupPrefix
+      S3BackupModeEnabled: !Ref S3BackupModeEnabled
+

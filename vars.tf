@@ -8,17 +8,9 @@ variable "NumberOfRetries" {
   description = "Number of times to attempt after failure"
 }
 
-variable "Enabled" {
-  default     = "True"
-  description = "Boolean: determines whether to enable features"
-}
-
-variable "LogStreamName" {
-  description = "Name of Log Stream"
-}
-
-variable "LogGroupName" {
-  description = "Name of Log Group Name"
+variable "S3BackupModeEnabled" {
+  default     = "Enabled"
+  description = "Enabled|Disabled: determines whether to enable"
 }
 
 variable "DeliveryStreamName" {
