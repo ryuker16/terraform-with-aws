@@ -1,0 +1,3 @@
+terraform:
+  build:
+    dockerfile_path: Dockerfile
