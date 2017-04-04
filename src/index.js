@@ -48,7 +48,7 @@ exports.handler = function (event, context) {
     };
 
     if (event.ResourceProperties.NumberOfRetries > 0) {
-      params.ExtendedS3DestinationConfiguration.ProcessingConfiguration.Processors.push({
+      params.ExtendedS3DestinationConfiguration.ProcessingConfiguration.Processors[0].Parameters.push({
         ParameterName: 'NumberOfRetries', /* required */
         ParameterValue: event.ResourceProperties.NumberOfRetries /* required */
       });

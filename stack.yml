@@ -96,4 +96,5 @@ Resources:
       BackupBucketARN: !Ref BackupBucketARN      
       BackupPrefix: !Ref BackupPrefix
       S3BackupModeEnabled: !Ref S3BackupModeEnabled
+      LambdaArn: !Ref LambdaArn
 
