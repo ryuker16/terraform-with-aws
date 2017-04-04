@@ -16,9 +16,7 @@ Parameters:
   LogStreamName:
     Type: String
   LogGroupName:
-    Type: String
-  LogGroupArn:
-    Type: String
+    Type: String  
   BackupPrefix:
     Type: String
   BackupBucketARN:
@@ -94,8 +92,7 @@ Resources:
       LogGroupName: !Ref LogGroupName
       LogStreamName: !Ref LogStreamName
       CompressionFormat: !Ref CompressionFormat
-      Prefix: !Ref Prefix
-      LogGroupArn: !Ref LogGroupArn
+      Prefix: !Ref Prefix      
       BackupBucketARN: !Ref BackupBucketARN
       BackupPrefix: !Ref BackupPrefix
       S3BackupModeEnabled: !Ref S3BackupModeEnabled

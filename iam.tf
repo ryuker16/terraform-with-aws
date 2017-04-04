@@ -64,8 +64,10 @@ data "aws_iam_policy_document" "firehose_delivery_role" {
 
   statement {
     # Either "Allow" or "Deny", to specify whether this statement allows or denies the given actions. The default is "Allow".
-    effect    = "Allow"
-    actions   = ["logs:PutLogEvents"]
-    resources = ["${aws_cloudwatch_log_group.firehose_log_group.arn}:log-stream:${var.LogStreamName}"]
+    effect  = "Allow"
+    actions = ["logs:PutLogEvents"]
+
+    # note - aws_cloudwatch_log_group.arn returns :*
+    resources = ["${aws_cloudwatch_log_group.firehose_log_group.arn}"]
   }
 }

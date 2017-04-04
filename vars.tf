@@ -14,7 +14,6 @@ variable "S3BackupModeEnabled" {
 }
 
 variable "DeliveryStreamName" {
-  default     = "firehose-logger-kinesis"
   description = "Name of the firehose delivery stream"
 }
 
@@ -24,28 +23,18 @@ variable "Prefix" {
 }
 
 variable "BucketARN" {
-  default     = "arn:aws:s3:::etl-canonical-property"
   description = "Destination BucketARN of firehose transformed records"
 }
 
+# http://docs.aws.amazon.com/firehose/latest/APIReference/API_BufferingHints.html
 variable "SizeInMBs" {
-  description = "Default Size in Mbs"
-  default     = 1
+  description = "Buffer incoming data to the specified size, in MBs, before delivering it to the destination. The default value is 5."
+  default     = 5
 }
 
 variable "IntervalInSeconds" {
-  description = " = Default Interval in Seconds"
-  default     = 60
-}
-
-variable "LogStreamName" {
-  default     = "test-logs"
-  description = "Name of the log stream inside our log group"
-}
-
-variable "LogGroupName" {
-  default     = "firehose-logger-kinesis"
-  description = "Name of log Group"
+  description = "Buffer incoming data for the specified period of time, in seconds, before delivering it to the destination. The default value is 300"
+  default     = 300
 }
 
 variable "BackupPrefix" {
@@ -54,13 +43,15 @@ variable "BackupPrefix" {
 }
 
 variable "BackupBucketARN" {
-  default     = "arn:aws:s3:::etl-extract-rets15-extracted-documents"
   description = "Backup bucket of firehose source record backup"
 }
 
 variable "LambdaArn" {
-  default     = "arn:aws:logs:us-east-1:752727858468:log-group:/aws/kinesisfirehose/firehose-logger-willy-kinesis"
   description = "Arn of the ExtendedS3DestinationConfiguration lambda, replace default AWS ID and log group name of your own"
+}
+
+variable "LambdaVersion" {
+  default = "$LATEST"
 }
 
 variable "aws_account_id" {

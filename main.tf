@@ -10,11 +10,10 @@ resource "aws_cloudformation_stack" "firehose_test_stack" {
     Prefix              = "${var.Prefix}"
     LogStreamName       = "${aws_cloudwatch_log_stream.firehose_log_stream.name}"
     LogGroupName        = "${aws_cloudwatch_log_group.firehose_log_group.name}"
-    LogGroupArn         = "arn:aws:logs:us-east-1:${var.aws_account_id}:log-group:${var.LogGroupName}"
     BackupPrefix        = "${var.BackupPrefix}"
     BucketARN           = "${var.BucketARN}"
     BackupBucketARN     = "${var.BackupBucketARN}"
-    LambdaArn           = "${var.LambdaArn}"
+    LambdaArn           = "${var.LambdaArn}:${var.LambdaVersion}"
     NumberOfRetries     = "${var.NumberOfRetries}"
     S3BackupModeEnabled = "${var.S3BackupModeEnabled}"
     CompressionFormat   = "${var.CompressionFormat}"
@@ -32,23 +31,20 @@ resource "aws_cloudwatch_log_group" "firehose_log_group" {
   name = "/aws/kinesisfirehose/${var.DeliveryStreamName}"
 }
 
+# log stream for both the Delivery and Backup
 resource "aws_cloudwatch_log_stream" "firehose_log_stream" {
-  name           = "${var.LogStreamName}"
+  name           = "delivery-${var.DeliveryStreamName}"
   log_group_name = "${aws_cloudwatch_log_group.firehose_log_group.name}"
 }
 
-output "Lambda Arn" {
-  value = "${var.LambdaArn}"
+output "FirehoseDeliveryRoleArn" {
+  value = "${aws_iam_role.firehose_delivery_role.arn}"
 }
 
-output "Delivery Stream Name" {
-  value = "${var.DeliveryStreamName}"
+output "LogGroupArn" {
+  value = "${aws_cloudwatch_log_group.firehose_log_group.arn}"
 }
 
-output "Role Arn" {
-  value = "${aws_iam_role.firehose_delivery_role.name}"
-}
-
-output "Log Group Arn" {
-  value = "arn:aws:logs:us-east-1:${var.aws_account_id}:log-group:${var.LogGroupName}"
+output "FirehoseStackId" {
+  value = "${aws_cloudformation_stack.firehose_test_stack.id}"
 }
