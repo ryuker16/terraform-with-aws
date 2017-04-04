@@ -17,6 +17,8 @@ Parameters:
     Type: String
   LogGroupName:
     Type: String
+  LogGroupArn:
+    Type: String
   BackupPrefix:
     Type: String
   BackupBucketARN:
@@ -73,7 +75,7 @@ Resources:
       FunctionName: !Join ['-', ['firehose-deployment', !Ref DeliveryStreamName] ]
       Handler: index.handler
       Role: !GetAtt AWSFirehoseFunctionRole.Arn
-      Description: Custom CFN resource to creates and deletes an AWS Firehose Delivery Stream with an ExtendedS3DestinationConfiguration
+      Description: "Custom CFN resource to creates and deletes an AWS Firehose Delivery Stream with an ExtendedS3DestinationConfiguration"
       Runtime: nodejs4.3
       Timeout: 300
       Code:
@@ -93,8 +95,8 @@ Resources:
       LogStreamName: !Ref LogStreamName
       CompressionFormat: !Ref CompressionFormat
       Prefix: !Ref Prefix
-      BackupBucketARN: !Ref BackupBucketARN      
+      LogGroupArn: !Ref LogGroupArn
+      BackupBucketARN: !Ref BackupBucketARN
       BackupPrefix: !Ref BackupPrefix
       S3BackupModeEnabled: !Ref S3BackupModeEnabled
       LambdaArn: !Ref LambdaArn
-

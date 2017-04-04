@@ -10,6 +10,7 @@ resource "aws_cloudformation_stack" "firehose_test_stack" {
     Prefix              = "${var.Prefix}"
     LogStreamName       = "${aws_cloudwatch_log_stream.firehose_log_stream.name}"
     LogGroupName        = "${aws_cloudwatch_log_group.firehose_log_group.name}"
+    LogGroupArn         = "arn:aws:logs:us-east-1:${var.aws_account_id}:log-group:${var.LogGroupName}"
     BackupPrefix        = "${var.BackupPrefix}"
     BucketARN           = "${var.BucketARN}"
     BackupBucketARN     = "${var.BackupBucketARN}"
@@ -32,6 +33,22 @@ resource "aws_cloudwatch_log_group" "firehose_log_group" {
 }
 
 resource "aws_cloudwatch_log_stream" "firehose_log_stream" {
-  name           = "S3Delivery"
+  name           = "${var.LogStreamName}"
   log_group_name = "${aws_cloudwatch_log_group.firehose_log_group.name}"
+}
+
+output "Lambda Arn" {
+  value = "${var.LambdaArn}"
+}
+
+output "Delivery Stream Name" {
+  value = "${var.DeliveryStreamName}"
+}
+
+output "Role Arn" {
+  value = "${aws_iam_role.firehose_delivery_role.name}"
+}
+
+output "Log Group Arn" {
+  value = "arn:aws:logs:us-east-1:${var.aws_account_id}:log-group:${var.LogGroupName}"
 }

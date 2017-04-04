@@ -1,6 +1,0 @@
-dist*
-typings
-# Ignore all non-default config values
-config/*
-!config/default.json
-!config/custom-environment-variables.json

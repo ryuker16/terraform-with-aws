@@ -1,6 +1,6 @@
 # Development tfvars files
 *.tfvars
-src/.DS_Store
+*.DS_Store
 
 # Created by https://www.gitignore.io/api/terraform,visualstudiocode
 

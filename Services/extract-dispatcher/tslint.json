@@ -1,4 +1,0 @@
-{
-  "extends": "tslint-config-standard",
-  "globals" : ["__base", "global", "__dirname"]
-}
