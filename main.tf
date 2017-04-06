@@ -1,4 +1,6 @@
-provider "aws" {}
+provider "aws" {
+  region = "${var.aws_region}"
+}
 
 resource "aws_cloudformation_stack" "firehose_test_stack" {
   name = "firehose-stack-${var.DeliveryStreamName}"
@@ -47,4 +49,12 @@ output "LogGroupArn" {
 
 output "FirehoseStackId" {
   value = "${aws_cloudformation_stack.firehose_test_stack.id}"
+}
+
+output "DeliveryStreamName" {
+  value = "${var.DeliveryStreamName}"
+}
+
+output "DeliveryStreamArn" {
+  value = "arn:aws:firehose:${var.aws_region}:${var.aws_account_id}:deliverystream/${var.DeliveryStreamName}"
 }
