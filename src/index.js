@@ -36,7 +36,7 @@ exports.handler = function (event, context) {
         Processors: [
           {
             Type: 'Lambda',
-            Parameters: [
+            Parameters: [ 
               {
                 ParameterName: 'LambdaArn',
                 ParameterValue: event.ResourceProperties.LambdaArn
@@ -56,7 +56,7 @@ exports.handler = function (event, context) {
     });
   }
   if (event.ResourceProperties.S3BackupModeEnabled === 'Enabled') {
-    params.ExtendedS3DestinationConfiguration.S3BackupConfiguration = {
+    var S3BackupConfiguration = {
       BucketARN: event.ResourceProperties.BackupBucketARN,
       RoleARN: event.ResourceProperties.RoleARN,
       BufferingHints: {
@@ -74,6 +74,8 @@ exports.handler = function (event, context) {
       },
       Prefix: event.ResourceProperties.BackupPrefix
     };
+    // during an update we have params['ExtendedS3DestinationUpdate']['S3BackupUpdate']
+    params.ExtendedS3DestinationConfiguration[event.RequestType === 'Update' ?  'S3BackupUpdate' : 'S3BackupConfiguration'] = S3BackupConfiguration;
   }
   if (event.RequestType === 'Create') {
     firehose.createDeliveryStream(params, function (err, data) {
@@ -112,11 +114,11 @@ exports.handler = function (event, context) {
               CurrentDeliveryStreamVersionId: details.DeliveryStreamDescription.VersionId,
               DestinationId: details.DeliveryStreamDescription.Destinations[0].DestinationId
             };
-            firehose.updateDestination(updateParams, function (err, updateData) {
+            firehose.updateDestination(updateParams, function (err, data) {
               if (err) {
                 fail(err);
               } else {
-                succeed(updateData);
+                succeed(data);
               }
             });
           }
