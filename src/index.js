@@ -110,6 +110,7 @@ exports.handler = function (event, context) {
             fail(err);
           } else {
             var updateParams = {
+              DeliveryStreamName: params.DeliveryStreamName,
               ExtendedS3DestinationUpdate: params.ExtendedS3DestinationConfiguration,
               CurrentDeliveryStreamVersionId: details.DeliveryStreamDescription.VersionId,
               DestinationId: details.DeliveryStreamDescription.Destinations[0].DestinationId
