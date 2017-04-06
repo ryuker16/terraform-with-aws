@@ -35,6 +35,7 @@ resource "aws_cloudwatch_log_group" "firehose_log_group" {
 
 # log stream for both the Delivery and Backup
 resource "aws_cloudwatch_log_stream" "firehose_log_stream" {
+  depends_on     = ["aws_cloudwatch_log_group.firehose_log_group"]
   name           = "delivery-${var.DeliveryStreamName}"
   log_group_name = "${aws_cloudwatch_log_group.firehose_log_group.name}"
 }
