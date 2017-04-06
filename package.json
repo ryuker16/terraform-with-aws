@@ -4,7 +4,8 @@
   "description": "terraform module that deploys a Firehose delivery stream with an ExtendedS3DestinationConfiguration by way of a CloudFormation Stack using Lambda as a custom resource",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "minify": "uglifyjs src/index.js -o src/index.min.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Placester/terraform-firehose/issues"
   },
-  "homepage": "https://github.com/Placester/terraform-firehose#readme"
+  "homepage": "https://github.com/Placester/terraform-firehose#readme",
+  "devDependencies": {
+    "uglify-js": "^2.8.21"
+  }
 }

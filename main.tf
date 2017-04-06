@@ -19,7 +19,7 @@ resource "aws_cloudformation_stack" "firehose_test_stack" {
     CompressionFormat   = "${var.CompressionFormat}"
     SizeInMBs           = "${var.SizeInMBs}"
     IntervalInSeconds   = "${var.IntervalInSeconds}"
-    FunctionCode        = "${file("${path.module}/src/index.js")}"
+    FunctionCode        = "${file("${path.module}/src/index.min.js")}"
   }
 
   capabilities = ["CAPABILITY_IAM"]
