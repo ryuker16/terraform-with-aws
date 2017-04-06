@@ -4,7 +4,7 @@
   "description": "terraform module that deploys a Firehose delivery stream with an ExtendedS3DestinationConfiguration by way of a CloudFormation Stack using Lambda as a custom resource",
   "main": "src/index.js",
   "scripts": {
-    "test": "eslint src/index.js && terraform validate",
+    "test": "eslint src/index.js --fix && terraform validate",
     "posttest": "npm run minify",
     "minify": "uglifyjs src/index.js -o src/index.min.js"
   },

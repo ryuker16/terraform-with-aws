@@ -19,3 +19,5 @@ FirehoseStackId
 ## publishing
 
 Unfortunately, we'll need to run `npm run minify` prior to submitting a release to ensure the 4096 character limit for AWS Lambda Function Code
+
+Running `npm test` does a simple eslint and terraform validate and minify
