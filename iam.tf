@@ -19,13 +19,14 @@ resource "aws_iam_policy_attachment" "firehose_delivery_role" {
 
 data "aws_iam_policy_document" "assume_firehose_delivery_role" {
   statement {
+    effect  = "Allow"
+
     actions = ["sts:AssumeRole"]
 
     principals {
       type        = "Service"
       identifiers = ["firehose.amazonaws.com"]
     }
-
     condition {
       test     = "StringEquals"
       variable = "sts:ExternalId"
@@ -36,6 +37,7 @@ data "aws_iam_policy_document" "assume_firehose_delivery_role" {
 
 data "aws_iam_policy_document" "firehose_delivery_role" {
   statement {
+    effect  = "Allow"
     actions = [
       "s3:AbortMultipartUpload",
       "s3:GetBucketLocation",
@@ -44,7 +46,6 @@ data "aws_iam_policy_document" "firehose_delivery_role" {
       "s3:ListBucketMultipartUploads",
       "s3:PutObject",
     ]
-
     resources = [
       "${var.BucketARN}",
       "${var.BucketARN}/*",
@@ -54,24 +55,13 @@ data "aws_iam_policy_document" "firehose_delivery_role" {
   }
 
   statement {
-    actions = [
-      "firehose:DescribeDeliveryStream",
-      "firehose:ListDeliveryStreams",
-      "firehose:CreateDeliveryStream",
-      "firehose:UpdateDestination",
-    ]
-
     effect    = "Allow"
-    resources = ["${var.LambdaArn}"]
-  }
-
-  statement {
     actions = [
       "lambda:InvokeFunction",
       "lambda:GetFunctionConfiguration",
     ]
 
-    resources = ["${var.LambdaArn}"]
+    resources = ["${var.LambdaArn}:${var.LambdaVersion}"]
   }
 
   statement {
