@@ -57,6 +57,18 @@ data "aws_iam_policy_document" "firehose_delivery_role" {
   statement {
     effect    = "Allow"
     actions = [
+      "firehose:DescribeDeliveryStream",
+      "firehose:ListDeliveryStreams",
+      "firehose:CreateDeliveryStream",
+      "firehose:UpdateDestination",
+    ]
+
+    effect    = "Allow"
+    resources = ["${var.LambdaArn}"]
+  }
+
+  statement {
+    actions = [
       "lambda:InvokeFunction",
       "lambda:GetFunctionConfiguration",
     ]
