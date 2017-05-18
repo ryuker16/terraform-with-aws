@@ -2,16 +2,16 @@ provider "aws" {
   region = "${var.aws_region}"
 }
 
-resource "aws_cloudformation_stack" "firehose_test_stack" {
+resource "aws_cloudformation_stack" "firehose" {
   name = "firehose-stack-${var.DeliveryStreamName}"
 
   # https://www.terraform.io/docs/providers/aws/r/cloudformation_stack.html
   parameters {
     DeliveryStreamName  = "${var.DeliveryStreamName}"
-    RoleARN             = "${aws_iam_role.firehose_delivery_role.arn}"
+    RoleARN             = "${aws_iam_role.firehose.arn}"
     Prefix              = "${var.Prefix}"
-    LogStreamName       = "${aws_cloudwatch_log_stream.firehose_log_stream.name}"
-    LogGroupName        = "${aws_cloudwatch_log_group.firehose_log_group.name}"
+    LogStreamName       = "${aws_cloudwatch_log_stream.firehose.name}"
+    LogGroupName        = "${aws_cloudwatch_log_group.firehose.name}"
     BackupPrefix        = "${var.BackupPrefix}"
     BucketARN           = "${var.BucketARN}"
     BackupBucketARN     = "${var.BackupBucketARN}"
@@ -29,27 +29,31 @@ resource "aws_cloudformation_stack" "firehose_test_stack" {
   template_body = "${file("${path.module}/stack.yml")}"
 }
 
-resource "aws_cloudwatch_log_group" "firehose_log_group" {
+resource "aws_cloudwatch_log_group" "firehose" {
   name = "/aws/kinesisfirehose/${var.DeliveryStreamName}"
 }
 
 # log stream for both the Delivery and Backup
-resource "aws_cloudwatch_log_stream" "firehose_log_stream" {
-  depends_on     = ["aws_cloudwatch_log_group.firehose_log_group"]
+resource "aws_cloudwatch_log_stream" "firehose" {
+  depends_on     = ["aws_cloudwatch_log_group.firehose"]
   name           = "delivery-${var.DeliveryStreamName}"
-  log_group_name = "${aws_cloudwatch_log_group.firehose_log_group.name}"
+  log_group_name = "${aws_cloudwatch_log_group.firehose.name}"
 }
 
 output "FirehoseDeliveryRoleArn" {
-  value = "${aws_iam_role.firehose_delivery_role.arn}"
+  value = "${aws_iam_role.firehose.arn}"
+}
+
+output "LogGroupName" {
+  value = "${aws_cloudwatch_log_group.firehose.name}"
 }
 
 output "LogGroupArn" {
-  value = "${aws_cloudwatch_log_group.firehose_log_group.arn}"
+  value = "${aws_cloudwatch_log_group.firehose.arn}"
 }
 
 output "FirehoseStackId" {
-  value = "${aws_cloudformation_stack.firehose_test_stack.id}"
+  value = "${aws_cloudformation_stack.firehose.id}"
 }
 
 output "DeliveryStreamName" {

@@ -1,25 +1,25 @@
-resource "aws_iam_role" "firehose_delivery_role" {
+resource "aws_iam_role" "firehose" {
   name               = "role-${var.DeliveryStreamName}"
-  assume_role_policy = "${data.aws_iam_policy_document.assume_firehose_delivery_role.json}"
+  assume_role_policy = "${data.aws_iam_policy_document.assume_firehose.json}"
 }
 
-resource "aws_iam_policy" "firehose_delivery_role" {
+resource "aws_iam_policy" "firehose" {
   name = "policy-${var.DeliveryStreamName}"
 
   # path - (Optional, default "/") Path in which to create the policy. See IAM Identifiers for more information.
   path   = "/"
-  policy = "${data.aws_iam_policy_document.firehose_delivery_role.json}"
+  policy = "${data.aws_iam_policy_document.firehose.json}"
 }
 
-resource "aws_iam_policy_attachment" "firehose_delivery_role" {
-  name       = "attach-${aws_iam_policy.firehose_delivery_role.name}"
-  roles      = ["${aws_iam_role.firehose_delivery_role.name}"]
-  policy_arn = "${aws_iam_policy.firehose_delivery_role.arn}"
+resource "aws_iam_policy_attachment" "firehose" {
+  name       = "attach-${aws_iam_policy.firehose.name}"
+  roles      = ["${aws_iam_role.firehose.name}"]
+  policy_arn = "${aws_iam_policy.firehose.arn}"
 }
 
-data "aws_iam_policy_document" "assume_firehose_delivery_role" {
+data "aws_iam_policy_document" "assume_firehose" {
   statement {
-    effect  = "Allow"
+    effect = "Allow"
 
     actions = ["sts:AssumeRole"]
 
@@ -27,6 +27,7 @@ data "aws_iam_policy_document" "assume_firehose_delivery_role" {
       type        = "Service"
       identifiers = ["firehose.amazonaws.com"]
     }
+
     condition {
       test     = "StringEquals"
       variable = "sts:ExternalId"
@@ -35,9 +36,10 @@ data "aws_iam_policy_document" "assume_firehose_delivery_role" {
   }
 }
 
-data "aws_iam_policy_document" "firehose_delivery_role" {
+data "aws_iam_policy_document" "firehose" {
   statement {
-    effect  = "Allow"
+    effect = "Allow"
+
     actions = [
       "s3:AbortMultipartUpload",
       "s3:GetBucketLocation",
@@ -46,6 +48,7 @@ data "aws_iam_policy_document" "firehose_delivery_role" {
       "s3:ListBucketMultipartUploads",
       "s3:PutObject",
     ]
+
     resources = [
       "${var.BucketARN}",
       "${var.BucketARN}/*",
@@ -55,7 +58,8 @@ data "aws_iam_policy_document" "firehose_delivery_role" {
   }
 
   statement {
-    effect    = "Allow"
+    effect = "Allow"
+
     actions = [
       "firehose:DescribeDeliveryStream",
       "firehose:ListDeliveryStreams",
@@ -94,6 +98,6 @@ data "aws_iam_policy_document" "firehose_delivery_role" {
     actions = ["logs:PutLogEvents"]
 
     # note - aws_cloudwatch_log_group.arn returns :*
-    resources = ["${aws_cloudwatch_log_group.firehose_log_group.arn}"]
+    resources = ["${aws_cloudwatch_log_group.firehose.arn}"]
   }
 }
