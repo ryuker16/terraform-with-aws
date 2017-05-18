@@ -127,7 +127,10 @@ exports.handler = function (event, context) {
       }
     });
   } else if (event.RequestType === 'Delete') {
-    firehose.deleteDeliveryStream(params, function (err, data) {
+    var deleteParams = {
+      DeliveryStreamName: event.ResourceProperties.DeliveryStreamName
+    };
+    firehose.deleteDeliveryStream(deleteParams, function (err, data) {
       if (err) {
         fail(err);
       } else {
